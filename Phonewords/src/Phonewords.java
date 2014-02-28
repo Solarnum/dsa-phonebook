@@ -1,11 +1,11 @@
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 
 public class Phonewords
 {
   public static void main(String args[])
   {
-    LinkedList<LinkedList<Character>> list = new LinkedList<LinkedList<Character>>();
+    ArrayList<ArrayList<Character>> list = new ArrayList<ArrayList<Character>>();
 
     if (args != null && args.length > 0)
     {
@@ -22,48 +22,48 @@ public class Phonewords
     }
   }
 
-  private static LinkedList<Character> getCharList(char c)
+  private static ArrayList<Character> getCharList(char c)
   {
-    LinkedList<Character> list = new LinkedList<Character>();
+    ArrayList<Character> list = new ArrayList<Character>();
 
     switch (c)
     {
     case '0':
-      list = new LinkedList<Character>(Arrays.asList('0'));
+      list = new ArrayList<Character>(Arrays.asList('0'));
       break;
     case '1':
-      list = new LinkedList<Character>(Arrays.asList('1'));
+      list = new ArrayList<Character>(Arrays.asList('1'));
       break;
     case '2':
-      list = new LinkedList<Character>(Arrays.asList('A', 'B', 'C'));
+      list = new ArrayList<Character>(Arrays.asList('A', 'B', 'C'));
       break;
     case '3':
-      list = new LinkedList<Character>(Arrays.asList('D', 'E', 'F'));
+      list = new ArrayList<Character>(Arrays.asList('D', 'E', 'F'));
       break;
     case '4':
-      list = new LinkedList<Character>(Arrays.asList('G', 'H', 'I'));
+      list = new ArrayList<Character>(Arrays.asList('G', 'H', 'I'));
       break;
     case '5':
-      list = new LinkedList<Character>(Arrays.asList('J', 'K', 'L'));
+      list = new ArrayList<Character>(Arrays.asList('J', 'K', 'L'));
       break;
     case '6':
-      list = new LinkedList<Character>(Arrays.asList('M', 'N', 'O'));
+      list = new ArrayList<Character>(Arrays.asList('M', 'N', 'O'));
       break;
     case '7':
-      list = new LinkedList<Character>(Arrays.asList('P', 'Q', 'R', 'S'));
+      list = new ArrayList<Character>(Arrays.asList('P', 'Q', 'R', 'S'));
       break;
     case '8':
-      list = new LinkedList<Character>(Arrays.asList('T', 'U', 'V'));
+      list = new ArrayList<Character>(Arrays.asList('T', 'U', 'V'));
       break;
     case '9':
-      list = new LinkedList<Character>(Arrays.asList('W', 'X', 'Y', 'Z'));
+      list = new ArrayList<Character>(Arrays.asList('W', 'X', 'Y', 'Z'));
       break;
     }
 
     return list;
   }
 
-  private static int getComboAmt(LinkedList<LinkedList<Character>> list)
+  private static int getComboAmt(ArrayList<ArrayList<Character>> list)
   {
     int combos = 1;
 
