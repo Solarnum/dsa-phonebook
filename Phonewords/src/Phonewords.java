@@ -18,7 +18,7 @@ public class Phonewords
 
       System.out.println("Combinations for \"" + number + "\": " + getComboAmt(list));
       System.out.println("=============================");
-      displayCombos();
+      displayCombos(list, 0);
     }
   }
 
@@ -76,7 +76,49 @@ public class Phonewords
     return combos;
   }
 
-  private static void displayCombos()
+  static int count = 1;
+
+  private static void displayCombos(ArrayList<ArrayList<Character>> list, int pos)
   {
+    ArrayList<Character> cList = list.get(pos);
+    String base = "";
+
+    for (int i = 0; i < cList.size(); i++)
+    {
+      base = cList.get(i).toString();
+
+      if (pos + 1 < list.size())
+      {
+        addEnds(list, base, pos + 1);
+      }
+    }
+  }
+
+  private static void addEnds(ArrayList<ArrayList<Character>> list, String base, int pos)
+  {
+    ArrayList<Character> cList = list.get(pos);
+
+    for (int i = 0; i < cList.size(); i++)
+    {
+      if (pos + 1 < list.size())
+      {
+        if (pos + 1 < base.length())
+        {
+          base += cList.get(i);
+        } else
+        {
+          base = base.substring(0, pos)+cList.get(i);
+        }
+      } else
+      {
+        System.out.print(count + ": " + base + cList.get(i) + "\n");
+        count++;
+      }
+
+      if (pos + 1 < list.size())
+      {
+        addEnds(list, base, pos + 1);
+      }
+    }
   }
 }
