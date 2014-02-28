@@ -16,8 +16,8 @@ public class Phonewords
         list.add(getCharList(number.charAt(i)));
       }
 
-      System.out.println("Combinations for \"" + number + "\": " + getComboAmt(list));
-      System.out.println("=============================");
+      System.out.println("Number of Combinations for " + number + ": " + getComboAmt(list));
+      System.out.println("=================================================");
       displayCombos(list, 0);
     }
   }
