@@ -19,6 +19,9 @@ public class Phonewords
       System.out.println("Number of Combinations for " + number + ": " + getComboAmt(list));
       System.out.println("=================================================");
       displayCombos(list, 0);
+    } else
+    {
+      System.out.println("Error: No arguments were passed in");
     }
   }
 
@@ -90,8 +93,7 @@ public class Phonewords
       if (pos + 1 < list.size())
       {
         addEnds(list, base, pos + 1);
-      }
-      else
+      } else
       {
         System.out.print(count + ": " + base + "\n");
         count++;
@@ -112,7 +114,7 @@ public class Phonewords
           base += cList.get(i);
         } else
         {
-          base = base.substring(0, pos)+cList.get(i);
+          base = base.substring(0, pos) + cList.get(i);
         }
       } else
       {
