@@ -91,6 +91,11 @@ public class Phonewords
       {
         addEnds(list, base, pos + 1);
       }
+      else
+      {
+        System.out.print(count + ": " + base + "\n");
+        count++;
+      }
     }
   }
 
