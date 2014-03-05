@@ -1,12 +1,25 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Phonewords
 {
+	/*I was thinking there might be a way to do this problem without using any ArrayLists or anything. Basically 
+	 * just for loops for each number that would be like
+	 * 
+	 * for i->0 to DigitArray[0].length-1 
+	 * 
+	 * It's probably doable and probably would cut the time down by a little bit. But its probably not worth it.
+	 * I'm up way too late right now :|
+	 */
+	private  static char[][] DigitArray = {{'0'},{'1'},{'A', 'B', 'C'},{'D', 'E', 'F'},
+		{'G', 'H', 'I'},{'J', 'K', 'L'}, {'M', 'N', 'O'},{'P', 'Q', 'R', 'S'},
+		{'T', 'U', 'V'},{'W', 'X', 'Y', 'Z'}};
+	
   public static void main(String args[])
   {
     ArrayList<ArrayList<Character>> list = new ArrayList<ArrayList<Character>>();
-
+    
     if (args != null && args.length > 0)
     {
       String number = args[0];
@@ -15,7 +28,7 @@ public class Phonewords
       {
         list.add(getCharList(number.charAt(i)));
       }
-
+      
       System.out.println("Number of Combinations for " + number + ": " + getComboAmt(list));
       System.out.println("=================================================");
       displayCombos(list, 0);
@@ -32,7 +45,8 @@ public class Phonewords
     switch (c)
     {
     case '0':
-      list = new ArrayList<Character>(Arrays.asList('0'));
+      //list = new ArrayList<Character>(Arrays.asList('0'));
+    	list = new ArrayList<Character>('0');
       break;
     case '1':
       list = new ArrayList<Character>(Arrays.asList('1'));
