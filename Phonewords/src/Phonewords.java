@@ -29,9 +29,11 @@ public class Phonewords
         list.add(getCharList(number.charAt(i)));
       }
       
-      System.out.println("Number of Combinations for " + number + ": " + getComboAmt(list));
+      //System.out.println("Number of Combinations for " + number + ": " + getComboAmt(list));
+      System.out.println("Number of Combinations for " + number + ": " + getComboAmt_v2(number));
       System.out.println("=================================================");
-      displayCombos(list, "", 0);
+      //displayCombos(list, "", 0);
+      displayCombos_v2(number, "", 0);
     } else
     {
       System.out.println("Error: No arguments were passed in");
@@ -79,6 +81,19 @@ public class Phonewords
 
     return list;
   }
+  
+  private static int getIntegerValue(String str)
+  {
+	  int num = 0;
+	  try
+	  {
+		  num = Integer.parseInt(str);
+	  }catch(Exception e){
+		  e.printStackTrace();
+	  }
+	  
+	  return num;
+  }
 
   private static int getComboAmt(ArrayList<ArrayList<Character>> list)
   {
@@ -119,6 +134,48 @@ public class Phonewords
       if (pos + 1 < list.size())
       {
         displayCombos(list, base, pos + 1);
+      }
+    }
+  }
+  
+  private static int getComboAmt_v2(String str)
+  {
+    int combos = 1;
+
+    for (int i = 0; i < str.length(); i++)
+    {
+      int index = getIntegerValue(str.substring(i, i+1));
+      if (DigitArray[index].length > 0)
+        combos *= DigitArray[index].length;
+    }
+
+    return combos;
+  }
+
+  private static void displayCombos_v2(String str, String base, int pos)
+  {
+    int index = getIntegerValue(str.substring(pos, pos+1));
+
+    for (int i = 0; i < DigitArray[index].length; i++)
+    {
+      if (pos + 1 < str.length())
+      {
+        if (pos + 1 < base.length())
+        {
+          base += DigitArray[index][i];
+        } else
+        {
+          base = base.substring(0, pos) + DigitArray[index][i];
+        }
+      } else
+      {
+        System.out.print(count + ": " + base + DigitArray[index][i] + "\n");
+        count++;
+      }
+
+      if (pos + 1 < str.length())
+      {
+        displayCombos_v2(str, base, pos + 1);
       }
     }
   }
