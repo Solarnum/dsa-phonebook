@@ -18,7 +18,7 @@ public class Phonewords
 
       System.out.println("Number of Combinations for " + number + ": " + getComboAmt(list));
       System.out.println("=================================================");
-      displayCombos(list, 0);
+      displayCombos(list, "", 0);
     } else
     {
       System.out.println("Error: No arguments were passed in");
@@ -81,27 +81,7 @@ public class Phonewords
 
   static int count = 1;
 
-  private static void displayCombos(ArrayList<ArrayList<Character>> list, int pos)
-  {
-    ArrayList<Character> cList = list.get(pos);
-    String base = "";
-
-    for (int i = 0; i < cList.size(); i++)
-    {
-      base = cList.get(i).toString();
-
-      if (pos + 1 < list.size())
-      {
-        addEnds(list, base, pos + 1);
-      } else
-      {
-        System.out.print(count + ": " + base + "\n");
-        count++;
-      }
-    }
-  }
-
-  private static void addEnds(ArrayList<ArrayList<Character>> list, String base, int pos)
+  private static void displayCombos(ArrayList<ArrayList<Character>> list, String base, int pos)
   {
     ArrayList<Character> cList = list.get(pos);
 
@@ -124,7 +104,7 @@ public class Phonewords
 
       if (pos + 1 < list.size())
       {
-        addEnds(list, base, pos + 1);
+        displayCombos(list, base, pos + 1);
       }
     }
   }
