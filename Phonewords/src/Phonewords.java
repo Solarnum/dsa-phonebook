@@ -1,17 +1,17 @@
+/**
+ * COSC3100 Spring 2014 Homework 4
+ * 
+ * Created : Feb. 27, 2014 
+ * Last Updated : March 6, 2014 
+ * Purpose: Find and print all the phoneword combinations of an inputted number string.
+ * 
+ * @author Mark Schlottke & Charlie Beckwith
+ */
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Phonewords {
-	/*
-	 * I was thinking there might be a way to do this problem without using any
-	 * ArrayLists or anything. Basically just for loops for each number that
-	 * would be like
-	 * 
-	 * for i->0 to DigitArray[0].length-1
-	 * 
-	 * It's probably doable and probably would cut the time down by a little
-	 * bit. But its probably not worth it. I'm up way too late right now :|
-	 */
 	private static char[][] DigitArray = { { '0' }, { '1' }, { 'A', 'B', 'C' },
 			{ 'D', 'E', 'F' }, { 'G', 'H', 'I' }, { 'J', 'K', 'L' },
 			{ 'M', 'N', 'O' }, { 'P', 'Q', 'R', 'S' }, { 'T', 'U', 'V' },
@@ -19,6 +19,12 @@ public class Phonewords {
 
 	private static int count = 1;
 
+	/**
+	 * Main entry point to the application.
+	 * The first argument is required and is the number string used to find the combinations
+	 * The second argument is not required and is used to choose which algorithm to run
+	 * @param args
+	 */
 	public static void main(String args[]) {
 		ArrayList<ArrayList<Character>> list = new ArrayList<ArrayList<Character>>();
 
@@ -30,6 +36,8 @@ public class Phonewords {
 				version = args[1];
 			}
 
+			// Determines and prints out the combinations using the algorithm version chosen
+			// Defaults to version 2 if no version is specified or the version is invalid
 			switch (version) {
 			case "1":
 				for (int i = 0; i < number.length(); i++) {
@@ -62,16 +70,20 @@ public class Phonewords {
 		}
 	}
 
+	/**
+	 * Builds the ArrayLists for the version 1 algorithm
+	 * @param c - char that determines which ArrayList to add
+	 * @return - the ArrayList for the input char
+	 */
 	private static ArrayList<Character> getCharList(char c) {
 		ArrayList<Character> list = new ArrayList<Character>();
 
 		switch (c) {
 		case '0':
-			// list = new ArrayList<Character>(Arrays.asList('0'));
 			list = new ArrayList<Character>('0');
 			break;
 		case '1':
-			list = new ArrayList<Character>(Arrays.asList('1'));
+			list = new ArrayList<Character>('1');
 			break;
 		case '2':
 			list = new ArrayList<Character>(Arrays.asList('A', 'B', 'C'));
@@ -102,6 +114,12 @@ public class Phonewords {
 		return list;
 	}
 
+	/**
+	 * Gets the integer value of the string passed in
+	 * Used to check exceptions in a known place
+	 * @param str - number string to convert to an integer
+	 * @return - the integer value of the string
+	 */
 	private static int getIntegerValue(String str) {
 		int num = 0;
 		try {
@@ -113,6 +131,12 @@ public class Phonewords {
 		return num;
 	}
 
+	/**
+	 * Gets the amount of combinations the phone number string has
+	 * Used for algorithm version 1
+	 * @param list - the ArrayList of the ArrayLists of char sets
+	 * @return - the integer value of combinations
+	 */
 	private static int getComboAmt(ArrayList<ArrayList<Character>> list) {
 		int combos = 1;
 
@@ -124,7 +148,13 @@ public class Phonewords {
 		return combos;
 	}
 
-	// Recursive algorithm using ArrayList
+	/**
+	 * A recursive algorithm that determines and prints the phoneword combinations
+	 * using ArrayLists
+	 * @param list - ArrayList of the ArrayList of chars
+	 * @param base - the output string 
+	 * @param pos - current position in the list
+	 */
 	private static void displayCombos(ArrayList<ArrayList<Character>> list,
 			String base, int pos) {
 		ArrayList<Character> cList = list.get(pos);
@@ -147,6 +177,12 @@ public class Phonewords {
 		}
 	}
 
+	/**
+	 * Gets the amount of combinations the phone number string has
+	 * Used for algorithm versions 2 and 3
+	 * @param str - the phone number string 
+	 * @return - the integer value of combinations
+	 */
 	private static int getComboAmt_v2(String str) {
 		int combos = 1;
 
@@ -159,7 +195,13 @@ public class Phonewords {
 		return combos;
 	}
 
-	// Recursive algorithm without using ArrayList
+	/**
+	 * A recursive algorithm that determines and prints the phoneword combinations
+	 * referencing a 2D array for the char arrays
+	 * @param str - the phone number string
+	 * @param base - the output string
+	 * @param pos - current position in the phone number string
+	 */
 	private static void displayCombos_v2(String str, String base, int pos) {
 		int index = getIntegerValue(str.substring(pos, pos + 1));
 
@@ -181,8 +223,12 @@ public class Phonewords {
 			}
 		}
 	}
-
-	// Alternative algorithm without using recursion
+	
+	/**
+	 * A non-recursive algorithm that determines and prints the phoneword combinations
+	 * referencing a 2D array for the char arrays
+	 * @param str -  the phone numbers string
+	 */
 	private static void displayCombos_v3(String str) {
 		int index = getIntegerValue("" + str.charAt(str.length() - 1));
 		int passes = getComboAmt_v2(str) / DigitArray[index].length;
@@ -225,6 +271,12 @@ public class Phonewords {
 		}
 	}
 
+	/**
+	 * Gets an integer array containing the last index for each array of chars
+	 * in order of the phone number string
+	 * @param str - the phone number string
+	 * @return - integer array containing the last indexes
+	 */
 	private static int[] getArrayLastPos(String str) {
 		int[] arraySizes = new int[str.length()];
 
@@ -236,6 +288,13 @@ public class Phonewords {
 		return arraySizes;
 	}
 
+	/**
+	 * Builds the base string without the final character using the indexes for
+	 * each array provided in the arrayPos array
+	 * @param str - the phone number string
+	 * @param arrayPos - an array containing the indexes for each char array
+	 * @return - a concatenated string
+	 */
 	private static String buildBase(String str, int[] arrayPos) {
 		String base = "";
 
