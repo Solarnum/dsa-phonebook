@@ -25,20 +25,40 @@ public class Phonewords {
 
 		if (args != null && args.length > 0) {
 			String number = args[0];
+			String version = "2";
 
-			for (int i = 0; i < number.length(); i++) {
-				list.add(getCharList(number.charAt(i)));
+			if(args.length > 1 && args[1].length() == 1)
+			{
+				version = args[1];
 			}
-
-			// System.out.println("Number of Combinations for " + number + ": "
-			// + getComboAmt(list));
-			System.out.println("Number of Combinations for " + number + ": "
-					+ getComboAmt_v2(number));
-			System.out
-					.println("=================================================");
-			//displayCombos(list, "", 0);
-			displayCombos_v2(number, "", 0);
-			//displayCombos_v3(number);
+			
+			switch(version){
+			case "1":
+				for (int i = 0; i < number.length(); i++) {
+					list.add(getCharList(number.charAt(i)));
+				}
+				System.out.println("Number of Combinations for " + number + ": "
+				+ getComboAmt(list));
+				System.out
+				.println("=================================================");
+				displayCombos(list, "", 0);
+				break;
+			case "3":
+				System.out.println("Number of Combinations for " + number + ": "
+						+ getComboAmt_v2(number));
+				System.out
+				.println("=================================================");
+				displayCombos_v3(number);
+				break;
+			default:
+			case "2":
+				System.out.println("Number of Combinations for " + number + ": "
+						+ getComboAmt_v2(number));
+				System.out
+				.println("=================================================");
+				displayCombos_v2(number, "", 0);
+				break;
+			}
 		} else {
 			System.out.println("Error: No arguments were passed in");
 		}
