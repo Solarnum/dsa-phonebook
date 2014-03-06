@@ -80,10 +80,10 @@ public class Phonewords {
 
 		switch (c) {
 		case '0':
-			list = new ArrayList<Character>('0');
+			list = new ArrayList<Character>(Arrays.asList('0'));
 			break;
 		case '1':
-			list = new ArrayList<Character>('1');
+			list = new ArrayList<Character>(Arrays.asList('1'));
 			break;
 		case '2':
 			list = new ArrayList<Character>(Arrays.asList('A', 'B', 'C'));
