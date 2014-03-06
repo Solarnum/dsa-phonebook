@@ -16,7 +16,7 @@ public class Phonewords {
 			{ 'D', 'E', 'F' }, { 'G', 'H', 'I' }, { 'J', 'K', 'L' },
 			{ 'M', 'N', 'O' }, { 'P', 'Q', 'R', 'S' }, { 'T', 'U', 'V' },
 			{ 'W', 'X', 'Y', 'Z' } };
-	
+
 	private static int count = 1;
 
 	public static void main(String args[]) {
@@ -26,35 +26,34 @@ public class Phonewords {
 			String number = args[0];
 			String version = "2";
 
-			if(args.length > 1 && args[1].length() == 1)
-			{
+			if (args.length > 1 && args[1].length() == 1) {
 				version = args[1];
 			}
-			
-			switch(version){
+
+			switch (version) {
 			case "1":
 				for (int i = 0; i < number.length(); i++) {
 					list.add(getCharList(number.charAt(i)));
 				}
-				System.out.println("Number of Combinations for " + number + ": "
-				+ getComboAmt(list));
+				System.out.println("Number of Combinations for " + number
+						+ ": " + getComboAmt(list));
 				System.out
-				.println("=================================================");
+						.println("=================================================");
 				displayCombos(list, "", 0);
 				break;
 			case "3":
-				System.out.println("Number of Combinations for " + number + ": "
-						+ getComboAmt_v2(number));
+				System.out.println("Number of Combinations for " + number
+						+ ": " + getComboAmt_v2(number));
 				System.out
-				.println("=================================================");
+						.println("=================================================");
 				displayCombos_v3(number);
 				break;
 			default:
 			case "2":
-				System.out.println("Number of Combinations for " + number + ": "
-						+ getComboAmt_v2(number));
+				System.out.println("Number of Combinations for " + number
+						+ ": " + getComboAmt_v2(number));
 				System.out
-				.println("=================================================");
+						.println("=================================================");
 				displayCombos_v2(number, "", 0);
 				break;
 			}
@@ -191,18 +190,22 @@ public class Phonewords {
 		int pos = str.length() - 2;
 
 		for (int i = 0; i < passes; i++) {
-			try {
-				String base = buildBase(str, arrayLastPos);
-				System.out.println(count + ": " + base + DigitArray[index][0]);
-				count++;
-				System.out.println(count + ": " + base + DigitArray[index][1]);
-				count++;
-				System.out.println(count + ": " + base + DigitArray[index][2]);
-				count++;
+			String base = buildBase(str, arrayLastPos);
+
+			switch (DigitArray[index].length) {
+			case 4:
 				System.out.println(count + ": " + base + DigitArray[index][3]);
 				count++;
-			} catch (Exception e) {
-				// e.printStackTrace();
+			case 3:
+				System.out.println(count + ": " + base + DigitArray[index][2]);
+				count++;
+			case 2:
+				System.out.println(count + ": " + base + DigitArray[index][1]);
+				count++;
+			case 1:
+				System.out.println(count + ": " + base + DigitArray[index][0]);
+				count++;
+				break;
 			}
 
 			if (pos > 0 && arrayLastPos[pos] > 0) {
@@ -214,7 +217,7 @@ public class Phonewords {
 
 					pos -= 1;
 				}
-				
+
 				arrayLastPos[pos] -= 1;
 
 				pos = str.length() - 2;
